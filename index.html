@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Reserva</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+</head>
+<body>
+
+    <header>
+
+    </header>
+    <section id="inicio">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for=""><img src="assets/img/plane1.png" alt="" width="40px"> Origen:</label>
+                    <select class="origin" name="state">
+                        <option value="AQP">Arequipa</option>
+                        <option value="CIX">Chiclayo</option>
+                        <option value="IQT">Iquitos</option>
+                        <option value="LIM">Lima</option>
+                        <option value="PIU">Piura</option>
+                        <option value="TPP">Tarapoto</option>
+                        <option value="TRU">Trujillo</option>
+                    </select>
+                    <label for=""><img src="assets/img/plane2.png" alt="" width="40px"> Destino:</label>
+                    <select class="destination" name="state">
+                        <option value="AQP">Arequipa</option>
+                        <option value="CIX" selected>Chiclayo</option>
+                        <option value="IQT">Iquitos</option>
+                        <option value="LIM">Lima</option>
+                        <option value="PIU">Piura</option>
+                        <option value="TPP">Tarapoto</option>
+                        <option value="TRU">Trujillo</option>
+                    </select>
+                    <label for=""><i class="fa fa-clock-o" aria-hidden="true"></i> Horario:</label>
+                    <select class="destination" name="state">
+                        <option value="AQP">Mañana</option>
+                        <option value="CIX">Tarde</option>
+                        <option value="IQT">Noche</option>
+                    </select>
+                    <button id="reserved"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservar</button>
+                    <button id="cancel"><i class="fa fa-calendar-o" aria-hidden="true"></i>Liberar</button>
+                    <button id="search"><i class="fa fa-search" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i>Buscar Pasajero</button>
+                    <button id="list"><i class="fa fa-users" aria-hidden="true"></i>Lista de Pasajeros</button>
+                </div>
+                <div class="col-md-6">
+                    <h1>Asientos Disponibles</h1>
+                    <table id="seats"></table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/4154d90246.js"></script>
+    <!-- Bootstrap  JS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
