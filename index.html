@@ -20,45 +20,56 @@
     <header>
 
     </header>
-    <section id="inicio">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for=""><img src="assets/img/plane1.png" alt="" width="40px"> Origen:</label>
-                    <select class="origin" name="state">
-                        <option value="AQP">Arequipa</option>
-                        <option value="CIX">Chiclayo</option>
-                        <option value="IQT">Iquitos</option>
-                        <option value="LIM">Lima</option>
-                        <option value="PIU">Piura</option>
-                        <option value="TPP">Tarapoto</option>
-                        <option value="TRU">Trujillo</option>
-                    </select>
-                    <label for=""><img src="assets/img/plane2.png" alt="" width="40px"> Destino:</label>
-                    <select class="destination" name="state">
-                        <option value="AQP">Arequipa</option>
-                        <option value="CIX" selected>Chiclayo</option>
-                        <option value="IQT">Iquitos</option>
-                        <option value="LIM">Lima</option>
-                        <option value="PIU">Piura</option>
-                        <option value="TPP">Tarapoto</option>
-                        <option value="TRU">Trujillo</option>
-                    </select>
-                    <label for=""><i class="fa fa-clock-o" aria-hidden="true"></i> Horario:</label>
-                    <select class="destination" name="state">
-                        <option value="AQP">Mañana</option>
-                        <option value="CIX">Tarde</option>
-                        <option value="IQT">Noche</option>
-                    </select>
-                    <button id="reserved"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Reservar</button>
-                    <button id="cancel"><i class="fa fa-calendar-o" aria-hidden="true"></i>Liberar</button>
-                    <button id="search"><i class="fa fa-search" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i>Buscar Pasajero</button>
-                    <button id="list"><i class="fa fa-users" aria-hidden="true"></i>Lista de Pasajeros</button>
+    <section id="inicio" class="container">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <h1>Vuelos</h1>
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <div class="mtb-20">
+                            <label class="mtb-10" for=""><img src="assets/img/plane1.png" alt="" width="40px"> Origen:</label><br>
+                            <select class="selection" id="origin" name="state">
+                                <option value="AQP">Arequipa</option>
+                                <option value="CIX">Chiclayo</option>
+                                <option value="IQT">Iquitos</option>
+                                <option value="LIM">Lima</option>
+                                <option value="PIU">Piura</option>
+                                <option value="TPP">Tarapoto</option>
+                                <option value="TRU">Trujillo</option>
+                            </select><br>
+                        </div>
+                        <div class="mtb-20">
+                            <label class="mtb-10" for=""><img src="assets/img/plane2.png" alt="" width="40px"> Destino:</label><br>
+                            <select class="selection" id="destination" name="state">
+                                <option value="AQP">Arequipa</option>
+                                <option value="CIX" selected>Chiclayo</option>
+                                <option value="IQT">Iquitos</option>
+                                <option value="LIM">Lima</option>
+                                <option value="PIU">Piura</option>
+                                <option value="TPP">Tarapoto</option>
+                                <option value="TRU">Trujillo</option>
+                            </select><br>
+                        </div>
+                        <div class="mtb-20">
+                            <label class="mtb-10" for=""><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i> Horario:</label><br>
+                            <select class="selection" id="time" name="state">
+                                <option value="AQP">Mañana</option>
+                                <option value="CIX">Tarde</option>
+                                <option value="IQT">Noche</option>
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-pick" id="reserved"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Reservar</button>
+                        <button class="btn btn-pick" id="cancel"><i class="fa fa-calendar-o" aria-hidden="true"></i> Liberar</button>
+                        <button class="btn btn-pick" id="search"><i class="fa fa-search" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i> Buscar</button>
+                        <button class="btn btn-pick" id="list"><i class="fa fa-users" aria-hidden="true"></i> Pasajeros</button>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h1>Asientos Disponibles</h1>
-                    <table id="seats"></table>
-                </div>
+            </div>
+            <div class="col-md-6">
+                <h1>Asientos Disponibles</h1>
+                <table id="seats"></table>
             </div>
         </div>
     </section>

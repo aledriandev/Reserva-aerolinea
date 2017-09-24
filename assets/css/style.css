@@ -1,11 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:400,600,700|PT+Sans:400,700|Roboto:400,700,900|Signika:400,700|Varela+Round');
+
+nada{
+    color: #51918b;	
+    color: #fff68f;	
+    color: #ff6f69;
+    color: #ccffc1;
+    color: #ffcc5c;
+    color: #ffeead;
+    color: #A1413E;
+}
+
 *{
     margin: 0 auto;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Asap';
+    outline:1px solid red;
 }
 
 body {
     background-color: #FAE4D8;
+}
+
+.mtb-20{
+    margin: 20px 0;
+}
+
+.mtb-10{
+    margin: 10px 0;
+    font-size: 150%;
+    font-weight: bold;
 }
 
 td{
@@ -25,4 +49,22 @@ table{
 
 button{
     display: block;
+}
+
+.btn-pick{
+    background-color: #51918b;	
+    color: #FCF2CE;
+    display: block;
+    padding: 8px 8px 8px 20px;
+    margin: 10px 0;
+    width: 90%;
+    text-align: left;
+    font-weight: bold;
+    font-size: 150%;
+    letter-spacing: 1px;
+}
+
+.selection{
+    width: 90%;
+    font-size: 120%;
 }

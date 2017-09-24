@@ -27,7 +27,6 @@ $('#seats').append(tableHTML);
 
 // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
-    $('.origin').select2();
-    $('.destination').select2();
+    $('.selection').select2();
     console.log();
 });
