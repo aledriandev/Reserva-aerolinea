@@ -1,6 +1,6 @@
 'use strict';
 
-function seats () {}
+// function seats () {}
 
 function User (seat,name,last,dni) {
     this.seat = seat;    
@@ -8,28 +8,88 @@ function User (seat,name,last,dni) {
     this.last = last;
     this.dni = dni;    
 }
-
+let celdas = [];
 //abc jkl //10 asientos
 const leters = ['A','B','C','','J','K','L'];
 const row = 10;
 let tableHTML= '';
 for (let i = 1; i<= row; i++) {
+    celdas[i] = [];
     tableHTML += `<tr>`;
     for (let j = 0; j< leters.length; j++) {
         if (j == 3)
             tableHTML += `<td></td>`;
-        else
-            tableHTML += `<td onclick='select(this)'>${i+leters[j]}</td>`;
+        else{
+            tableHTML += `<td class='td-modal'>${i+leters[j]}</td>`;
+            celdas[i][j] = i+leters[j];
+        }
     }
     tableHTML += `</tr>`;
 }
-$('#seats').append(tableHTML);
+
+let tableVisualHTML= '';
+for (let i = 1; i<= row; i++) {
+    celdas[i] = [];
+    tableVisualHTML += `<tr>`;
+    for (let j = 0; j< leters.length; j++) {
+        if (j == 3)
+            tableVisualHTML += `<td></td>`;
+        else{
+            tableVisualHTML += `<td class='td-visual'>${i+leters[j]}</td>`;
+        }
+    }
+    tableVisualHTML += `</tr>`;
+}
+let users = [];
+
+$('#seats').append(tableVisualHTML);
 $('#modal-seats').append(tableHTML);
+
+function select(e){
+    celdaActual = e.target;
+    let text = e.target.textContent;
+    console.log(text);
+    $('#seat').val(text);
+}
+let celdaActual;
+let celdaActualPantalla = [];
+let actual;
+let celdasTd = document.getElementsByClassName('td-modal');
+let celdasVisualTd = document.getElementsByClassName('td-visual');
+function allTd (celdas) {
+
+    for (let i = 0; i < celdas.length; i++) {
+        celdaActual = celdas[i];
+        celdaActual.addEventListener('click',select,false);
+    }
+}
+
+$('#reserved').click(function(){
+    let userSeat = $('#seat').val();
+    let userName = $('#name').val();    
+    let userLast = $('#last').val();
+    let userDni = $('#dni').val();
+    let user = new User (userSeat,userName,userLast,userDni);
+    users.push(user);
+    $('#modal-reserved').modal('hide');
+    $('#seat').val('');
+    $('#name').val('');    
+    $('#last').val('');
+    $('#dni').val('');
+    celdaActual.classList.add('bg-red');
+    console.log(celdaActual.getAttribute('class'));
+    for (let i in celdasVisualTd) {
+        if(celdasTd[i].getAttribute('class') == 'td-modal bg-red'){
+            celdasVisualTd[i].classList.add('bg-red');
+        }
+    }
+});
 
 // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
     $('.selection').select2();
     console.log();
+    allTd(celdasTd);
 });
 
 //funciones
@@ -46,11 +106,8 @@ function soloLetras(e) {
             break;
         }
     }
-
-    if(letras.indexOf(tecla) == -1 && !tecla_especial){
-        alert('Tecla no aceptada');
+    if(letras.indexOf(tecla) == -1 && !tecla_especial)
         return false;
-      }
 }
 
 function SoloNumeros(evt){

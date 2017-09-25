@@ -95,6 +95,10 @@ button{
     letter-spacing: 1px;
 }
 
+.bg-red{
+    background-color: #ff6f69;
+}
+
 .form-control{
     background: transparent;
 }
