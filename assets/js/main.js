@@ -122,27 +122,40 @@ $('#reserved').click(function(){
 });
 
 $('#cancel').click(function(){
-    users.push(user);
-    $('#modal-reserved').modal('hide');
-    $('#seat').val('');
-    $('#name').val('');    
-    $('#last').val('');
-    $('#dni').val('');
-    celdaActual.classList.add('bg-red');
-    console.log(celdaActual.getAttribute('class'));
-    for (let i in celdasVisualTd) {
-        if(celdasTd[i].getAttribute('class') == 'td-modal bg-red'){
-            celdasVisualTd[i].classList.add('bg-red');
-            celdasCancelTd[i].classList.add('bg-red');
+    for (let i in celdasCancelTd) {
+        if(celdasCancelTd[i].getAttribute('class') == 'td-modal bg-red'){
+            celdasVisualTd[i].classList.remove('bg-red');
+            celdasCancelTd[i].classList.remove('bg-red');
+            celdasTd[i].classList.remove('bg-red');
+        }
+    }
+    for (let j in users) {
+        if (text == users[j].seat) {
+            users.splice(j,1)
         }
     }
 });
-// In your Javascript (external .js resource or <script> tag)
+
+//lista de pasajeros
+function listPass (users){
+    for (let i in users) {
+        let listPassengers = `<div class='user'>
+                            <p><b>Asiento:</b>${users[i].seat}</p>
+                            <p><b>Nombre:</b>${users[i].name}</p>
+                            <p><b>Apellido:</b>${users[i].last}</p>
+                            <p><b>DNI:</b>${users[i].dni}</p>
+                        </div>`;
+        $('#passengers').html(listPassengers);
+    }
+}
+
+
 $(document).ready(function() {
     $('.selection').select2();
     console.log();
     allTd(celdasTd);
     cancelTd(celdasCancelTd);
+    listPass(users);
 });
 
 //funciones
