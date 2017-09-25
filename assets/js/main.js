@@ -100,16 +100,12 @@ function cancel(e){
     }
 }
 $('#reserved').click(function(){
-    for (let i in users) {
-        if ($('#cancel-seat').val() == users[i].seat) {
-            // console.log(users[i].name + '  '+users[i].last+' '+users[i].dni);
-            users.splice(i, 1);
-        }
-    }
     let userSeat = $('#seat').val();
     let userName = $('#name').val();    
     let userLast = $('#last').val();
     let userDni = $('#dni').val();
+    let user = new User (userSeat,userName,userLast,userDni);
+    users.push(user);
     $('#modal-reserved').modal('hide');
     $('#seat').val('');
     $('#name').val('');    
@@ -126,11 +122,6 @@ $('#reserved').click(function(){
 });
 
 $('#cancel').click(function(){
-    let userSeat = $('#seat').val();
-    let userName = $('#name').val();    
-    let userLast = $('#last').val();
-    let userDni = $('#dni').val();
-    let user = new User (userSeat,userName,userLast,userDni);
     users.push(user);
     $('#modal-reserved').modal('hide');
     $('#seat').val('');
