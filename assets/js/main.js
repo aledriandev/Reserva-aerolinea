@@ -26,7 +26,6 @@ for (let i = 1; i<= row; i++) {
     }
     tableHTML += `</tr>`;
 }
-
 let tableVisualHTML= '';
 for (let i = 1; i<= row; i++) {
     celdas[i] = [];
@@ -40,10 +39,25 @@ for (let i = 1; i<= row; i++) {
     }
     tableVisualHTML += `</tr>`;
 }
+
+let tableCancelHTML= '';
+for (let i = 1; i<= row; i++) {
+    celdas[i] = [];
+    tableCancelHTML += `<tr>`;
+    for (let j = 0; j< leters.length; j++) {
+        if (j == 3)
+            tableCancelHTML += `<td></td>`;
+        else{
+            tableCancelHTML += `<td class='td-cancel'>${i+leters[j]}</td>`;
+        }
+    }
+    tableCancelHTML += `</tr>`;
+}
 let users = [];
 
 $('#seats').append(tableVisualHTML);
 $('#modal-seats').append(tableHTML);
+$('#cancel-seats').append(tableCancelHTML);
 
 function select(e){
     celdaActual = e.target;
@@ -56,6 +70,7 @@ let celdaActualPantalla = [];
 let actual;
 let celdasTd = document.getElementsByClassName('td-modal');
 let celdasVisualTd = document.getElementsByClassName('td-visual');
+let celdasCancelTd = document.getElementsByClassName('td-cancel');
 function allTd (celdas) {
 
     for (let i = 0; i < celdas.length; i++) {
@@ -63,8 +78,54 @@ function allTd (celdas) {
         celdaActual.addEventListener('click',select,false);
     }
 }
-
+function cancelTd (celdas) {
+    for (let i = 0; i < celdas.length; i++) {
+        // console.log( celdas[i].getAttribute('class'))
+        // if(celdas[i].getAttribute('class') == 'td-cancel bg-red'){
+            celdas[i].addEventListener('click',cancel,false)
+        // }
+    }
+}
+function cancel(e){
+    let text = e.target.textContent;
+    console.log( text)
+    $('#cancel-seat').val(text);
+    for (let i in users) {
+        if (text == users[i].seat) {
+            // console.log(users[i].name + '  '+users[i].last+' '+users[i].dni);
+            $('#cancel-name').val(users[i].name);    
+            $('#cancel-last').val(users[i].last);
+            $('#cancel-dni').val(users[i].dni);
+        }
+    }
+}
 $('#reserved').click(function(){
+    for (let i in users) {
+        if ($('#cancel-seat').val() == users[i].seat) {
+            // console.log(users[i].name + '  '+users[i].last+' '+users[i].dni);
+            users.splice(i, 1);
+        }
+    }
+    let userSeat = $('#seat').val();
+    let userName = $('#name').val();    
+    let userLast = $('#last').val();
+    let userDni = $('#dni').val();
+    $('#modal-reserved').modal('hide');
+    $('#seat').val('');
+    $('#name').val('');    
+    $('#last').val('');
+    $('#dni').val('');
+    celdaActual.classList.add('bg-red');
+    console.log(celdaActual.getAttribute('class'));
+    for (let i in celdasVisualTd) {
+        if(celdasTd[i].getAttribute('class') == 'td-modal bg-red'){
+            celdasVisualTd[i].classList.add('bg-red');
+            celdasCancelTd[i].classList.add('bg-red');
+        }
+    }
+});
+
+$('#cancel').click(function(){
     let userSeat = $('#seat').val();
     let userName = $('#name').val();    
     let userLast = $('#last').val();
@@ -81,15 +142,16 @@ $('#reserved').click(function(){
     for (let i in celdasVisualTd) {
         if(celdasTd[i].getAttribute('class') == 'td-modal bg-red'){
             celdasVisualTd[i].classList.add('bg-red');
+            celdasCancelTd[i].classList.add('bg-red');
         }
     }
 });
-
 // In your Javascript (external .js resource or <script> tag)
 $(document).ready(function() {
     $('.selection').select2();
     console.log();
     allTd(celdasTd);
+    cancelTd(celdasCancelTd);
 });
 
 //funciones

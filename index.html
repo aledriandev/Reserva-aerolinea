@@ -63,7 +63,7 @@
                         <button class="btn btn-pick" data-toggle="modal" data-target="#modal-reserved">
                             <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Reservar
                         </button>
-                        <button class="btn btn-pick" id="cancel">
+                        <button class="btn btn-pick" data-toggle="modal" data-target="#modal-cancel">
                             <i class="fa fa-calendar-o" aria-hidden="true"></i> Liberar
                         </button>
                         <button class="btn btn-pick" id="search">
@@ -103,7 +103,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon"><img src="assets/img/seat.png" alt=""  width="30px"></i></span>
-                                    <input id="seat" type="text" class="form-control" required>
+                                    <input id="seat" type="text" class="form-control" disabled>
                                     <label for="seat">Asiento</label>
                                 </div>
                             </div>
@@ -136,9 +136,66 @@
                 <button type="submit" class="btn btn-modal" id="reserved">Reservar</button>
                 <button type="button" class="btn btn-modal" data-dismiss="modal">Cancelar</button>
             </div>
+        </div>
       </div>
     </div>
     <!-- Modal limpiar -->
+    <div class="modal fade" id="modal-cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-one">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h2 class="modal-title">Cancela tu reservacion... :c </h2>
+                </div>
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <h3>Selecciona el asiento: </h3>
+                            <table id="cancel-seats"></table>
+                        </div>
+                        <div class="col-md-6">
+                            <form role="form" class="go-right">
+                                <h3>Registro</h3>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><img src="assets/img/seat.png" alt=""  width="30px"></i></span>
+                                        <input id="cancel-seat" type="text" class="form-control" disabled>
+                                        <label for="cancel-seat">Asiento</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><img src="assets/img/user.png" alt=""  width="30px"></i></span>
+                                        <input id="cancel-name" type="text" class="form-control" disabled>
+                                        <label for="cancel-name">Nombre</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><img src="assets/img/user.png" alt=""  width="30px"></i></span>
+                                        <input id="cancel-last" type="text" class="form-control" disabled>
+                                        <label for="cancel-last">Apellido</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><img src="assets/img/dni.png" alt=""  width="30px"></i></span>
+                                        <input id="cancel-dni" type="tel" disabled>
+                                        <label for="cancel-dni">DNI</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="submit" class="btn btn-modal" id="cancel">Liberar</button>
+                    <button type="button" class="btn btn-modal" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal buscar -->
     <!-- Modal lista -->
 
