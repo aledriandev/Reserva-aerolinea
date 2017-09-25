@@ -106,6 +106,7 @@ $('#reserved').click(function(){
     let userDni = $('#dni').val();
     let user = new User (userSeat,userName,userLast,userDni);
     users.push(user);
+    listPass (users);
     $('#modal-reserved').modal('hide');
     $('#seat').val('');
     $('#name').val('');    
