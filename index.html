@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-md-6 text-left">
                         <div class="mtb-20">
-                            <label class="mtb-10" for=""><img src="assets/img/plane1.png" alt="" width="40px"> Origen:</label><br>
+                            <label class="mtb-5" for=""><img src="assets/img/plane1.svg" alt="" width="40px"> Origen:</label><br>
                             <select class="selection" id="origin" name="state">
                                 <option value="AQP">Arequipa</option>
                                 <option value="CIX">Chiclayo</option>
@@ -39,7 +39,7 @@
                             </select><br>
                         </div>
                         <div class="mtb-20">
-                            <label class="mtb-10" for=""><img src="assets/img/plane2.png" alt="" width="40px"> Destino:</label><br>
+                            <label class="mtb-5" for=""><img src="assets/img/plane2.svg" alt="" width="40px"> Destino:</label><br>
                             <select class="selection" id="destination" name="state">
                                 <option value="AQP">Arequipa</option>
                                 <option value="CIX" selected>Chiclayo</option>
@@ -51,7 +51,7 @@
                             </select><br>
                         </div>
                         <div class="mtb-20">
-                            <label class="mtb-10" for=""><i class="fa fa-clock-o fa-2x" aria-hidden="true"></i> Horario:</label><br>
+                            <label class="mtb-5" for=""><img src="assets/img/clock.svg" alt="" width="40px"> Horario:</label><br>
                             <select class="selection" id="time" name="state">
                                 <option value="AQP">Mañana</option>
                                 <option value="CIX">Tarde</option>
@@ -60,10 +60,19 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-pick" id="reserved"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Reservar</button>
-                        <button class="btn btn-pick" id="cancel"><i class="fa fa-calendar-o" aria-hidden="true"></i> Liberar</button>
-                        <button class="btn btn-pick" id="search"><i class="fa fa-search" aria-hidden="true"></i><i class="fa fa-user" aria-hidden="true"></i> Buscar</button>
-                        <button class="btn btn-pick" id="list"><i class="fa fa-users" aria-hidden="true"></i> Pasajeros</button>
+                        <button class="btn btn-pick" data-toggle="modal" data-target="#modal-reserved">
+                            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Reservar
+                        </button>
+                        <button class="btn btn-pick" id="cancel">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i> Liberar
+                        </button>
+                        <button class="btn btn-pick" id="search">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                            <i class="fa fa-user" aria-hidden="true"></i> Buscar
+                        </button>
+                        <button class="btn btn-pick" id="list">
+                            <i class="fa fa-users" aria-hidden="true"></i> Pasajeros
+                        </button>
                     </div>
                 </div>
             </div>
@@ -73,6 +82,66 @@
             </div>
         </div>
     </section>
+    <!-- MODALES -->
+    <!-- Modal reservar -->
+    <div class="modal fade" id="modal-reserved" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content modal-content-one">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title">Reserva tu asiento con un solo click!!!</h2>
+            </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <h3>Selecciona tu asiento: </h3>
+                        <table id="modal-seats"></table>
+                    </div>
+                    <div class="col-md-6">
+                        <form role="form" class="go-right">
+                            <h3>Registro</h3>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><img src="assets/img/seat.png" alt=""  width="30px"></i></span>
+                                    <input id="seat" type="text" class="form-control" required>
+                                    <label for="seat">Asiento</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><img src="assets/img/user.png" alt=""  width="30px"></i></span>
+                                    <input id="name" type="text" class="form-control" required onkeypress="return soloLetras(event);" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <label for="name">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><img src="assets/img/user.png" alt=""  width="30px"></i></span>
+                                    <input id="last" type="text" class="form-control" required onkeypress="return soloLetras(event);" onKeyUp="this.value = this.value.toUpperCase();">
+                                    <label for="last">Apellido</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><img src="assets/img/dni.png" alt=""  width="30px"></i></span>
+                                    <input id="dni" type="tel" class="form-control" required onkeypress="return SoloNumeros(event);">
+                                    <label for="dni">DNI</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer text-right">
+                <button type="submit" class="btn btn-modal" id="reserved">Reservar</button>
+                <button type="button" class="btn btn-modal" data-dismiss="modal">Cancelar</button>
+            </div>
+      </div>
+    </div>
+    <!-- Modal limpiar -->
+    <!-- Modal buscar -->
+    <!-- Modal lista -->
+
 
     <!-- Font Awesome -->
     <script src="https://use.fontawesome.com/4154d90246.js"></script>
