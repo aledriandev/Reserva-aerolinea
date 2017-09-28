@@ -100,12 +100,16 @@ function cancel(e){
     }
 }
 $('#reserved').click(function(){
+    for (let i in users) {
+        if ($('#cancel-seat').val() == users[i].seat) {
+            // console.log(users[i].name + '  '+users[i].last+' '+users[i].dni);
+            users.splice(i, 1);
+        }
+    }
     let userSeat = $('#seat').val();
     let userName = $('#name').val();    
     let userLast = $('#last').val();
     let userDni = $('#dni').val();
-    let user = new User (userSeat,userName,userLast,userDni);
-    users.push(user);
     $('#modal-reserved').modal('hide');
     $('#seat').val('');
     $('#name').val('');    
@@ -121,24 +125,20 @@ $('#reserved').click(function(){
     }
 });
 
-$('#reserved').click(function(){
+$('#cancel').click(function(){
     let userSeat = $('#seat').val();
     let userName = $('#name').val();    
     let userLast = $('#last').val();
     let userDni = $('#dni').val();
     let user = new User (userSeat,userName,userLast,userDni);
     users.push(user);
-    $('#modal-reserved').modal('hide');
-    $('#seat').val('');
-    $('#name').val('');    
-    $('#last').val('');
-    $('#dni').val('');
-    celdaActual.classList.add('bg-red');
-    console.log(celdaActual.getAttribute('class'));
-    for (let i in celdasVisualTd) {
-        if(celdasTd[i].getAttribute('class') == 'td-modal bg-red'){
-            celdasVisualTd[i].classList.add('bg-red');
-            celdasCancelTd[i].classList.add('bg-red');
+    $('#modal-cancel').modal('hide');
+
+    for (let i in celdasCancelTd) {
+        if(celdasCancelTd[i].getAttribute('class') == 'td-modal bg-red'){
+            celdasVisualTd[i].classList.remove('bg-red');
+            celdasCancelTd[i].classList.remove('bg-red');
+            celdasTd[i].classList.remove('bg-red');
         }
     }
 });
