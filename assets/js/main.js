@@ -110,6 +110,9 @@ $('#reserved').click(function(){
     let userName = $('#name').val();    
     let userLast = $('#last').val();
     let userDni = $('#dni').val();
+    let user = new User (userSeat,userName,userLast,userDni);
+    users.push(user);
+    listPass (users);
     $('#modal-reserved').modal('hide');
     $('#seat').val('');
     $('#name').val('');    
@@ -141,13 +144,33 @@ $('#cancel').click(function(){
             celdasTd[i].classList.remove('bg-red');
         }
     }
+    for (let j in users) {
+        if (text == users[j].seat) {
+            users.splice(j,1)
+        }
+    }
 });
-// In your Javascript (external .js resource or <script> tag)
+
+//lista de pasajeros
+function listPass (users){
+    for (let i in users) {
+        let listPassengers = `<div class='user'>
+                            <p><b>Asiento:</b>${users[i].seat}</p>
+                            <p><b>Nombre:</b>${users[i].name}</p>
+                            <p><b>Apellido:</b>${users[i].last}</p>
+                            <p><b>DNI:</b>${users[i].dni}</p>
+                        </div>`;
+        $('#passengers').html(listPassengers);
+    }
+}
+
+
 $(document).ready(function() {
     $('.selection').select2();
     console.log();
     allTd(celdasTd);
     cancelTd(celdasCancelTd);
+    listPass(users);
 });
 
 //funciones
