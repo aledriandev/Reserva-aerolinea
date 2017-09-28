@@ -66,7 +66,7 @@ function select(e){
     $('#seat').val(text);
 }
 let celdaActual;
-let celdaActualPantalla = [];
+let celdaCancelActual = [];
 let actual;
 let celdasTd = document.getElementsByClassName('td-modal');
 let celdasVisualTd = document.getElementsByClassName('td-visual');
@@ -82,7 +82,8 @@ function cancelTd (celdas) {
     for (let i = 0; i < celdas.length; i++) {
         // console.log( celdas[i].getAttribute('class'))
         // if(celdas[i].getAttribute('class') == 'td-cancel bg-red'){
-            celdas[i].addEventListener('click',cancel,false)
+            celdaCancelActual = celdas[i];
+            celdaCancelActual.addEventListener('click',cancel,false)
         // }
     }
 }
@@ -119,9 +120,10 @@ $('#reserved').click(function(){
     $('#last').val('');
     $('#dni').val('');
     celdaActual.classList.add('bg-red');
-    console.log(celdaActual.getAttribute('class'));
-    for (let i in celdasVisualTd) {
-        if(celdasTd[i].getAttribute('class') == 'td-modal bg-red'){
+    console.log(celdaActual.classList.contains('bg-red'));
+    for (let i=0; i<celdasTd.length; i++) {
+        console.log(celdasTd[i].classList.contains('bg-red'));
+        if(celdasTd[i].classList.contains('bg-red')){
             celdasVisualTd[i].classList.add('bg-red');
             celdasCancelTd[i].classList.add('bg-red');
         }
@@ -129,21 +131,17 @@ $('#reserved').click(function(){
 });
 
 $('#cancel').click(function(){
-    let userSeat = $('#seat').val();
-    let userName = $('#name').val();    
-    let userLast = $('#last').val();
-    let userDni = $('#dni').val();
-    let user = new User (userSeat,userName,userLast,userDni);
-    users.push(user);
-    $('#modal-cancel').modal('hide');
-
-    for (let i in celdasCancelTd) {
-        if(celdasCancelTd[i].getAttribute('class') == 'td-modal bg-red'){
+    let text = $('#cancel-seat').val();
+    console.log(celdaCancelActual)
+    celdaCancelActual.classList.remove('bg-red');
+    for (let i=0; i<celdasCancelTd.length; i++) {
+        if(!celdasCancelTd[i].classList.contains('bg-red')){
             celdasVisualTd[i].classList.remove('bg-red');
-            celdasCancelTd[i].classList.remove('bg-red');
             celdasTd[i].classList.remove('bg-red');
         }
     }
+    
+    $('#modal-cancel').modal('hide');
     for (let j in users) {
         if (text == users[j].seat) {
             users.splice(j,1)
@@ -171,6 +169,7 @@ $(document).ready(function() {
     allTd(celdasTd);
     cancelTd(celdasCancelTd);
     listPass(users);
+    
 });
 
 //funciones
